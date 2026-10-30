@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://openrobokit.com/graspkit/"><img src="https://raw.githubusercontent.com/openrobokit/graspkit/main/docs/assets/graspkit-banner.webp" alt="GraspKit" width="100%"></a>
+  <a href="https://github.com/openrobokit/graspkit"><img src="https://raw.githubusercontent.com/openrobokit/graspkit/main/docs/assets/graspkit-banner.webp" alt="GraspKit" width="100%"></a>
 </p>
 
 <p align="center">
@@ -11,7 +11,7 @@
 GraspKit is an end-to-end toolkit for manipulation across various robot embodiments, including grippers
 and dexterous hands.
 It synthesizes grasps, plans trajectories, trains policies, and deploys them
-in simulation or on real robots; it is built on top of [RoboKit](https://openrobokit.com/robokit/).
+in simulation or on real robots; it is built on top of [RoboKit](https://github.com/openrobokit/robokit).
 
 ## Quick links
 

@@ -11,8 +11,6 @@ uvx --from graspkit python -m graspkit.gallery.grasp_optim
 Pick a hand, arm, and object. Press *Optimize* to generate grasps, then browse them with the
 *Grasp* slider. The gallery caches results for the next visit.
 
-![The grasp gallery switching from xHand to a Robotiq gripper](https://openrobokit.com/assets/docs/graspkit/assets/gallery/grasp_optim.webp)
-
 ## Optimize one grasp
 
 After [installing](installation.md), run the smallest grasp optimization example:
