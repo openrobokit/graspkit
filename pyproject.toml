@@ -1,0 +1,162 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "graspkit"
+version = "0.1.0"
+authors = [{ name = "RoboKit Organization", email = "jianglong.yeh@gmail.com" }]
+description = "GraspKit is an end-to-end toolkit for manipulation across robot grippers and dexterous hands."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    # common dependencies
+    "tyro>=0.9.24",  # older tyro rejects the benchmark CLI's GraspPolicy annotations
+    "einops>=0.6",
+    "h5py>=3.11",
+    "wandb>=0.17",
+    "python-dotenv>=1.0",
+    "msgspec>=0.18",
+    "universal_pathlib>=0.2",
+    "fsspec[s3]>=2023.1",
+    "huggingface_hub>=0.36",
+    "jaxtyping>=0.2.19",
+    "beartype>=0.18",
+    # core dependencies
+    "viser>=1.1",
+    "tensorboard>=2.16",
+    "gymnasium>=0.29.1",
+    "numpy>=1.24",
+    "warp-lang>=1.8",
+    "yourdfpy>=0.0.56",
+    "torch-geometric>=2.4",
+    "torch>=2.4",
+    "fpsample>=1.0.2",
+    "robokit>=1.0.0rc1",
+    "mujoco>=3.4",
+    "pytorch_kinematics>=0.7",  # graspkit.policies.arx_x5_openloop: the RoboDojo arms' reachability IK
+]
+
+[project.optional-dependencies]
+maniskill = ["mani-skill==3.0.0b22"]  # its mplib 0.1.1 has wheels up to Python 3.12
+spconv = ["spconv-cu126>=2.3.7"]  # SpUNet encoder; wheels up to Python 3.13
+torchvision = ["torchvision>=0.19"]  # ResNet-18 RGB encoder
+sam2 = ["sam-2>=1.0"]
+xarm = ["retargetingkit[realsense,xarm,ability]>=0.1.0", "open3d>=0.19"]
+vega = ["retargetingkit[xarm,ability,dexmate]>=0.1.0", "pyzmq>=25", "open3d>=0.19"]
+rby1 = ["retargetingkit[realsense,rby1]>=0.1.0", "open3d>=0.19"]
+data-process = ["coacd>=1.0", "fast-simplification>=0.1.7"]
+
+[dependency-groups]
+dev = ["ipython>=8", "pytest>=7.4", "robot_descriptions>=1.22"]
+# local-dev torch/torchvision CUDA build; pt-cu126 is the default (see default-groups).
+# switch with e.g. `uv sync --no-default-groups --group pt-cu128`. not published to consumers.
+pt-cpu = ["torch>=2.4", "torchvision>=0.19"]
+pt-cu118 = ["torch>=2.4", "torchvision>=0.19"]
+pt-cu126 = ["torch>=2.4", "torchvision>=0.19"]
+pt-cu128 = ["torch>=2.4", "torchvision>=0.19"]
+
+[tool.uv]
+preview = true
+default-groups = ["dev", "pt-cu126"]
+required-environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+conflicts = [
+    [
+        { group = "pt-cpu" },
+        { group = "pt-cu118" },
+    ],
+    [
+        { group = "pt-cpu" },
+        { group = "pt-cu126" },
+    ],
+    [
+        { group = "pt-cpu" },
+        { group = "pt-cu128" },
+    ],
+    [
+        { group = "pt-cu118" },
+        { group = "pt-cu126" },
+    ],
+    [
+        { group = "pt-cu118" },
+        { group = "pt-cu128" },
+    ],
+    [
+        { group = "pt-cu126" },
+        { group = "pt-cu128" },
+    ],
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/graspkit"]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu", group = "pt-cpu", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+    { index = "pytorch-cu118", group = "pt-cu118", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+    { index = "pytorch-cu126", group = "pt-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+    { index = "pytorch-cu128", group = "pt-cu128", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+    { index = "pytorch-cpu", marker = "sys_platform == 'darwin'" },
+]
+torchvision = [
+    { index = "pytorch-cpu", group = "pt-cpu", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+    { index = "pytorch-cu118", group = "pt-cu118", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+    { index = "pytorch-cu126", group = "pt-cu126", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+    { index = "pytorch-cu128", group = "pt-cu128", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },
+    { index = "pytorch-cpu", marker = "sys_platform == 'darwin'" },
+]
+sam-2 = { index = "torch-packages-builder" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "torch-packages-builder"
+url = "https://jianglongye.github.io/torch_packages_builder"
+explicit = true
+[tool.pytest.ini_options]
+pythonpath = ["."]  # tests import `scripts.*`
+testpaths = ["tests"]
+markers = [
+    "cuda: needs a CUDA device; skipped without one",
+    "hf_assets: needs Hugging Face assets (robokit robots, graspkit scenes); skipped without an HF token",
+]
+
+[tool.ruff]
+line-length = 120
+exclude = ["thirdparty"]
+
+[tool.ruff.lint]
+extend-select = ["I"]
+ignore = ["E402", "F722"]
+
+[tool.ruff.lint.isort]
+known-third-party = ["robokit"]

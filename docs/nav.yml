@@ -1,0 +1,46 @@
+# Sidebar for the docs site: groups in order, each listing its pages in order.
+# A `fold` nests its pages under a collapsible run inside the group.
+#
+# id is the page's URL (/docs/?project=graspkit&id=<id>); keep it stable.
+
+- group: User Guide
+  pages:
+    - {id: overview, file: guide/overview.md, nav: Overview}
+    - {id: quickstart, file: guide/quickstart.md}
+    - {id: install, file: guide/installation.md}
+    - {id: grasp-optim, file: guide/grasp_optim.md, nav: Grasp Optimization}
+    - {id: training, file: guide/training.md, nav: Policy Training}
+    - {id: pipeline, file: guide/pipeline.md, nav: Pipeline}
+    - {id: sim-deploy, file: guide/sim_deployment.md, nav: Sim Deployment}
+    - {id: real-deploy, file: guide/real_deployment.md, nav: Real Deployment}
+
+- group: Concepts
+  pages:
+    - {id: concepts-overview, file: concepts/overview.md, nav: Core Overview}
+    - {id: grasp-optim-backends, file: concepts/grasp_optim.md, nav: Grasp Optimization Backends}
+    - {id: concepts-sim, file: concepts/sim.md, nav: Simulation}
+    - {id: concepts-policies, file: concepts/policies.md, nav: Models and Policies}
+
+- group: Reference
+  pages:
+    - {id: ref-robot-hands, file: reference/robot_hands.md, nav: Robot and Hand Catalog}
+    - {id: ref-config-system, file: reference/config_system.md, nav: Config System}
+  folds:
+    - fold: Data
+      pages:
+        - {id: ref-data-format, file: reference/data/data_format.md}
+        - {id: ref-assets, file: reference/data/assets.md}
+        - {id: ref-scene-descriptions, file: reference/data/scene_descriptions.md}
+    - fold: API
+      pages:
+        - {id: api-grasp-optim, file: reference/api/grasp_optim.md}
+        - {id: api-scene, file: reference/api/scene.md}
+        - {id: api-motion-plan, file: reference/api/motion_plan.md}
+        - {id: api-policy, file: reference/api/policy.md}
+        - {id: api-training, file: reference/api/training.md}
+        - {id: api-envs, file: reference/api/envs.md}
+        - {id: api-data, file: reference/api/data.md}
+
+- group: Development
+  pages:
+    - {id: dev, file: dev.md}

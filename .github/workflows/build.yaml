@@ -1,0 +1,37 @@
+name: build
+on:
+  push:
+    branches: [main] # PR branches run via pull_request only
+  pull_request:
+    branches: [main]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/ruff-action@v3
+        with:
+          version: "0.15.22"
+          args: check --output-format github
+      - uses: astral-sh/ruff-action@v3
+        with:
+          version: "0.15.22"
+          args: format --diff
+  # CPU-only, Python 3.12 at the locked newest versions with ManiSkill; `make test-oldest` covers 3.10 at the oldest locally.
+  # Tests marked `cuda` or `hf_assets` (private Hugging Face assets, no token here) skip.
+  test:
+    runs-on: ubuntu-latest
+    env:
+      HF_HUB_OFFLINE: "1"
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.12"
+          enable-cache: true
+      - name: Cache robot descriptions
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/robot_descriptions
+          key: robot-descriptions-v1
+      - run: uv run --frozen --no-default-groups --group dev --group pt-cpu --extra maniskill pytest tests

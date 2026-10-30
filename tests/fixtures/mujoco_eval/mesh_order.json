@@ -1,0 +1,32 @@
+{
+  "core_bottle_523cddb320608c09a37f3fc191551700": [
+    "convex_piece_002.obj", "convex_piece_000.obj", "convex_piece_001.obj"
+  ],
+  "core_can_be67418a10003cc9eae3efbc9dbeea": [
+    "convex_piece_004.obj", "convex_piece_015.obj", "convex_piece_006.obj",
+    "convex_piece_017.obj", "convex_piece_010.obj", "convex_piece_011.obj",
+    "convex_piece_018.obj", "convex_piece_002.obj", "convex_piece_007.obj",
+    "convex_piece_003.obj", "convex_piece_005.obj", "convex_piece_019.obj",
+    "convex_piece_009.obj", "convex_piece_014.obj", "convex_piece_008.obj",
+    "convex_piece_016.obj", "convex_piece_013.obj", "convex_piece_012.obj",
+    "convex_piece_000.obj", "convex_piece_001.obj"
+  ],
+  "core_jar_58c9d6575d62fbaf12bc68f36f3bdd45": [
+    "convex_piece_002.obj", "convex_piece_000.obj", "convex_piece_001.obj"
+  ],
+  "sem_Piano_438f64dd9ff80bfddd5efa4c0e7932e": [
+    "convex_piece_023.obj", "convex_piece_004.obj", "convex_piece_015.obj",
+    "convex_piece_006.obj", "convex_piece_025.obj", "convex_piece_017.obj",
+    "convex_piece_010.obj", "convex_piece_011.obj", "convex_piece_018.obj",
+    "convex_piece_002.obj", "convex_piece_029.obj", "convex_piece_020.obj",
+    "convex_piece_007.obj", "convex_piece_024.obj", "convex_piece_003.obj",
+    "convex_piece_005.obj", "convex_piece_019.obj", "convex_piece_009.obj",
+    "convex_piece_028.obj", "convex_piece_014.obj", "convex_piece_008.obj",
+    "convex_piece_016.obj", "convex_piece_026.obj", "convex_piece_013.obj",
+    "convex_piece_022.obj", "convex_piece_012.obj", "convex_piece_000.obj",
+    "convex_piece_001.obj", "convex_piece_027.obj", "convex_piece_021.obj"
+  ],
+  "sem_ToyFigure_a3087c9105fe0878d18a6b3b9816ca14": [
+    "convex_piece_000.obj", "convex_piece_001.obj"
+  ]
+}

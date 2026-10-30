@@ -1,0 +1,51 @@
+{
+  "phase": "dev_first_then_frozen_test",
+  "frozen": false,
+  "robots": [
+    "arx_x5",
+    "panda_allegro",
+    "agilex_aloha",
+    "yam",
+    "xarm7_sharpa"
+  ],
+  "sensors": [
+    "depth",
+    "rgb"
+  ],
+  "generators": [
+    "cvae",
+    "flow_transformer"
+  ],
+  "loops": [
+    "open",
+    "closed"
+  ],
+  "simulators": [
+    "maniskill",
+    "isaac"
+  ],
+  "policies": 20,
+  "loop_entries": 40,
+  "test_conditions": 80,
+  "test_scenes_per_condition": 500,
+  "test_episodes": 40000,
+  "seed": 0,
+  "attempts": 1,
+  "proposals": 64,
+  "guidance_steps": 8,
+  "radius": 2,
+  "control_steps": 300,
+  "closed_loop": {
+    "first_plan_steps": 75,
+    "fresh_observation": true,
+    "second_plan_steps": 225,
+    "weights_shared_with_open_loop": true
+  },
+  "rgb_views": 4,
+  "rgb_views_note": "Four matched views in native camera order.",
+  "dev_scene_count": 20,
+  "dev_object_disjoint_from_training_and_test": true,
+  "source_repository": "graspkit",
+  "s3_root": "",
+  "evaluation_selection_note": "Policies and settings use separate dev checks before frozen test evaluation."
+}
