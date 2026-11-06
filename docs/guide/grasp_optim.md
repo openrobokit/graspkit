@@ -1,7 +1,7 @@
 # Grasp Optimization (`grasp_optim`)
 
 
-| ![A floating Sharpa hand optimizing a grasp on a cube](../assets/guide/sharpa_optim.webp) | ![An xArm7 + Sharpa optimizing arm and hand joints together](../assets/guide/xarm7_sharpa_optim.webp) |
+| ![A floating Sharpa hand optimizing a grasp on a cube](https://openrobokit.com/assets/docs/graspkit/assets/guide/sharpa_optim.webp) | ![An xArm7 + Sharpa optimizing arm and hand joints together](https://openrobokit.com/assets/docs/graspkit/assets/guide/xarm7_sharpa_optim.webp) |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | A floating hand optimizing a grasp.                                                       | An arm and hand optimized together on a fixed base.                                                   |
 
@@ -67,7 +67,7 @@ The sections below build the same stage step by step in Python.
 
 ### Sampling initial poses
 
-![Initial Sharpa hand poses sampled around a mustard bottle](../assets/guide/sharpa_init.webp)
+![Initial Sharpa hand poses sampled around a mustard bottle](https://openrobokit.com/assets/docs/graspkit/assets/guide/sharpa_init.webp)
 
 Init samples drawn with the palm-down cone below: red is the hand axis (`palm_forward`), gray is the target
 (world -z). Both start at the wrist; the label is their angle, always within the 60 deg cone.
@@ -118,7 +118,7 @@ grasp_qpos = optimizer.optimize([scene], num_samples_per_scene=8)  # (1, 8, 18)
 Grasp filters live in `GraspTrajBuilderConfig` and run first inside `GraspTrajBuilder.build()`. They
 only mark grasps, they don't drop them. Call `filter_grasps` to run them alone, without motion planning:
 
-![A passing and a failing xHand grasp for each filter: contact-avoid, penetration, hand axis](../assets/guide/grasp_filters.png)
+![A passing and a failing xHand grasp for each filter: contact-avoid, penetration, hand axis](https://openrobokit.com/assets/docs/graspkit/assets/guide/grasp_filters.png)
 
 ```python
 from graspkit.configs.experiment_config import GraspTrajBuilderConfig

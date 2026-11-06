@@ -1,10 +1,12 @@
 <p align="center">
-  <a href="https://github.com/openrobokit/graspkit"><img src="https://raw.githubusercontent.com/openrobokit/graspkit/main/docs/assets/graspkit-banner.webp" alt="GraspKit" width="100%"></a>
+  <a href="https://github.com/openrobokit/graspkit"><img src="https://openrobokit.com/assets/docs/graspkit/assets/graspkit-banner.webp" alt="GraspKit" width="100%"></a>
 </p>
 
 <p align="center">
   <a href="https://github.com/openrobokit/graspkit/blob/main/pyproject.toml"><img src="https://img.shields.io/badge/python-3.10%2B-blue" alt="Python 3.10+"></a>
   <a href="https://github.com/openrobokit/graspkit/actions/workflows/build.yaml"><img src="https://img.shields.io/badge/CI-GitHub_Actions-blue" alt="GitHub Actions"></a>
+  <a href="https://openrobokit.com/graspkit/"><img src="https://img.shields.io/badge/homepage-GraspKit-blue" alt="Homepage"></a>
+  <a href="https://openrobokit.com/docs/graspkit/overview/"><img src="https://img.shields.io/badge/docs-GraspKit-blue" alt="Docs"></a>
   <a href="https://github.com/openrobokit/graspkit/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
 </p>
 
@@ -13,8 +15,14 @@ and dexterous hands.
 It synthesizes grasps, plans trajectories, trains policies, and deploys them
 in simulation or on real robots; it is built on top of [RoboKit](https://github.com/openrobokit/robokit).
 
+<p align="center">
+  <a href="https://openrobokit.com/graspkit/"><img src="https://openrobokit.com/assets/docs/graspkit/assets/showcase/real-world.webp" alt="Robot hands grasping objects during a real-world run" width="100%"></a><br>
+  <em>Real-world grasping with dexterous robot hands in San Diego.</em>
+</p>
+
 ## Quick links
 
+- [Homepage](https://openrobokit.com/graspkit/)
 - [Docs](https://github.com/openrobokit/graspkit/blob/main/docs/guide/overview.md)
 - [Quickstart](https://github.com/openrobokit/graspkit/blob/main/docs/guide/quickstart.md)
 - [Installation](https://github.com/openrobokit/graspkit/blob/main/docs/guide/installation.md)
@@ -35,21 +43,21 @@ See [Installation](https://github.com/openrobokit/graspkit/blob/main/docs/guide/
 <table width="100%">
   <tr>
     <td width="50%">
-      <a href="https://github.com/openrobokit/graspkit/blob/main/docs/guide/grasp_optim.md"><img src="https://raw.githubusercontent.com/openrobokit/graspkit/main/docs/assets/features/grasp-optimization.webp" alt="1,024 dexterous grasps optimized in one GPU batch" width="100%"></a><br>
+      <a href="https://github.com/openrobokit/graspkit/blob/main/docs/guide/grasp_optim.md"><img src="https://openrobokit.com/assets/docs/graspkit/assets/features/grasp-optimization.webp" alt="1,024 dexterous grasps optimized in one GPU batch" width="100%"></a><br>
       <strong><a href="https://github.com/openrobokit/graspkit/blob/main/docs/guide/grasp_optim.md">Fast grasp optimization</a></strong>
     </td>
     <td width="50%">
-      <a href="https://github.com/openrobokit/graspkit/blob/main/docs/guide/training.md"><img src="https://raw.githubusercontent.com/openrobokit/graspkit/main/docs/assets/features/policy-learning.webp" alt="Object point cloud mapped by a grasp generator to a hand grasp" width="100%"></a><br>
+      <a href="https://github.com/openrobokit/graspkit/blob/main/docs/guide/training.md"><img src="https://openrobokit.com/assets/docs/graspkit/assets/features/policy-learning.webp" alt="Object point cloud mapped by a grasp generator to a hand grasp" width="100%"></a><br>
       <strong><a href="https://github.com/openrobokit/graspkit/blob/main/docs/guide/training.md">Policy learning</a></strong>
     </td>
   </tr>
   <tr>
     <td>
-      <a href="https://github.com/openrobokit/graspkit/blob/main/docs/reference/robot_hands.md"><img src="https://raw.githubusercontent.com/openrobokit/graspkit/main/docs/assets/features/embodiments.webp" alt="Different arms with dexterous hands grasping the same object in simulation" width="100%"></a><br>
+      <a href="https://github.com/openrobokit/graspkit/blob/main/docs/reference/robot_hands.md"><img src="https://openrobokit.com/assets/docs/graspkit/assets/features/embodiments.webp" alt="Different arms with dexterous hands grasping the same object in simulation" width="100%"></a><br>
       <strong><a href="https://github.com/openrobokit/graspkit/blob/main/docs/reference/robot_hands.md">All arms, all hands</a></strong>
     </td>
     <td>
-      <a href="https://github.com/openrobokit/graspkit/blob/main/docs/guide/real_deployment.md"><img src="https://raw.githubusercontent.com/openrobokit/graspkit/main/docs/assets/features/sim-to-real.webp" alt="Two real xArm robots with dexterous hands, diagonally split with their aligned simulation twin" width="100%"></a><br>
+      <a href="https://github.com/openrobokit/graspkit/blob/main/docs/guide/real_deployment.md"><img src="https://openrobokit.com/assets/docs/graspkit/assets/features/sim-to-real.webp" alt="Two real xArm robots with dexterous hands, diagonally split with their aligned simulation twin" width="100%"></a><br>
       <strong><a href="https://github.com/openrobokit/graspkit/blob/main/docs/guide/real_deployment.md">Real-world robustness</a></strong>
     </td>
   </tr>

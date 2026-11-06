@@ -3,6 +3,8 @@
 Select a free GPU, then run:
 
     CUDA_VISIBLE_DEVICES=0 uv run --no-sync --with playwright scripts/tools/record_gallery.py
+
+Copy the output to the website repo at assets/docs/graspkit/assets/gallery/; openrobokit.com hosts the docs images.
 """
 
 import time
