@@ -29,32 +29,32 @@ Click **Capture** to start over whenever it is enabled.
 
 Pick a **Scene**. Click **Capture**. See the camera image on the right.
 
-![Captured simulation RGB alongside the xArm7 and xHand scene](../assets/guide/deploy_capture.webp)
+![Captured simulation RGB alongside the xArm7 and xHand scene](https://openrobokit.com/assets/docs/graspkit/assets/guide/deploy_capture.webp)
 
 ### 2. Segment
 
 Click **Segment**. Click the object in the large image. Blue = selected. Click **Submit Mask**.
 
-![SAM2 object mask with a positive prompt and the segmentation controls](../assets/guide/deploy_segment.webp)
+![SAM2 object mask with a positive prompt and the segmentation controls](https://openrobokit.com/assets/docs/graspkit/assets/guide/deploy_segment.webp)
 
 ### 3. Check Grasp/Trajectory
 
 Click **Check Grasp/Trajectory**. **Grasp** picks a candidate. **Trajectory Step** previews its motion.
 
-![A candidate grasp and its planned trajectory beside the segmented red cloud](../assets/guide/deploy_plan.webp)
+![A candidate grasp and its planned trajectory beside the segmented red cloud](https://openrobokit.com/assets/docs/graspkit/assets/guide/deploy_plan.webp)
 
 ### 4. Deploy
 
 Click **Deploy** to move. **Deploy Until Step** sets where to stop.
 Raise it; click **Deploy** to continue.
 
-![Simulation paused partway through execution using Deploy Until Step](../assets/guide/deploy_pause.webp)
+![Simulation paused partway through execution using Deploy Until Step](https://openrobokit.com/assets/docs/graspkit/assets/guide/deploy_pause.webp)
 
 ### 5. Release
 
 Click **Release**. Hand opens. Arm goes home. `--loop` lets you repeat.
 
-![The completed simulated trajectory, ready to release and park](../assets/guide/deploy_release.webp)
+![The completed simulated trajectory, ready to release and park](https://openrobokit.com/assets/docs/graspkit/assets/guide/deploy_release.webp)
 
 ### Controls and options
 

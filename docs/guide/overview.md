@@ -1,9 +1,13 @@
-![GraspKit](../assets/graspkit-banner.webp)
+![GraspKit](https://openrobokit.com/assets/docs/graspkit/assets/graspkit-banner.webp)
 
 GraspKit is an end-to-end toolkit for manipulation across various robot embodiments, including grippers
 and dexterous hands.
 It synthesizes grasps, plans trajectories, trains policies, and deploys them
 in simulation or on real robots; it is built on top of [RoboKit](https://github.com/openrobokit/robokit).
+
+[![Robot hands grasping objects during a real-world run](https://openrobokit.com/assets/docs/graspkit/assets/showcase/real-world.webp)](https://openrobokit.com/graspkit/)
+
+*Real-world grasping with dexterous robot hands in San Diego.*
 
 ## Key features
 
@@ -18,10 +22,10 @@ in simulation or on real robots; it is built on top of [RoboKit](https://github.
 - **Real-world validation.** Run trained policies on xArm and Vega robots with calibrated cameras
   and collision-checked motions. See [Real deployment](real_deployment.md).
 
-| [![Fast grasp optimization](../assets/features/grasp-optimization.webp)](grasp_optim.md) | [![Policy training](../assets/features/policy-learning.webp)](training.md) |
+| [![Fast grasp optimization](https://openrobokit.com/assets/docs/graspkit/assets/features/grasp-optimization.webp)](grasp_optim.md) | [![Policy training](https://openrobokit.com/assets/docs/graspkit/assets/features/policy-learning.webp)](training.md) |
 | --- | --- |
 | **[Fast grasp optimization](grasp_optim.md)** | **[Performant policy training](training.md)** |
-| [![All arms, all hands](../assets/features/embodiments.webp)](../reference/robot_hands.md) | [![Real-world robustness](../assets/features/sim-to-real.webp)](real_deployment.md) |
+| [![All arms, all hands](https://openrobokit.com/assets/docs/graspkit/assets/features/embodiments.webp)](../reference/robot_hands.md) | [![Real-world robustness](https://openrobokit.com/assets/docs/graspkit/assets/features/sim-to-real.webp)](real_deployment.md) |
 | **[All arms, all hands](../reference/robot_hands.md)** | **[Real-world robustness](real_deployment.md)** |
 
 ## How it works
@@ -42,3 +46,4 @@ For the graph of stages and the artifacts between them, see
 - [Quickstart](quickstart.md)
 - [Installation](installation.md)
 - [GitHub](https://github.com/openrobokit/graspkit)
+- [Website](https://openrobokit.com/graspkit/)

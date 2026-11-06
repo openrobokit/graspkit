@@ -134,7 +134,8 @@ def optimize_grasps(
 
     # Stage 2: build the traj builder, the in-loop evaluator, and the grasp optimizer.
     traj_builder = build_planning_traj_builder(cfg, device, robot_config=robot_config)
-    evaluator = build_env(cfg.grasp_optim.evaluator, robot_config, device, enable_rendering=False)
+    # Keep rendering on: render_backend="none" segfaults sapien URDF RenderMaterial creation on a later reconfigure.
+    evaluator = build_env(cfg.grasp_optim.evaluator, robot_config, device)
     scene_descriptions = SceneDescription.load_scene_descriptions_msgpack(cfg.scene_description_path)
     grasp_optimizer = WarpGraspOptimizer(
         cfg.grasp_optim, robot_config, device, fixed_base_robot_config=cfg.traj_builder.fixed_base_robot_config

@@ -1,4 +1,4 @@
-# Grasp Benchmark Results — mesh_vs_low_sdf (graspkit on robokit contact var and solvers; volcan RTX 3090, idle GPU)
+# Grasp Benchmark Results — mesh_vs_low_sdf (graspkit on robokit contact var and solvers; RTX 3090, idle GPU)
 Date: 2026-09-05 01:29
 ## xhand_right_dev_mesh_vs_low_sdf (floating task, 8 scenes × 64 samples = 512 grasps)
 | Metric | mesh_warp_gd | mesh_warp_lm | low_sdf_warp_gd | low_sdf_warp_lm |

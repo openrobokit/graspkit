@@ -55,7 +55,7 @@ class TestOptimizeGrasps:
         monkeypatch.setattr(optimize_pipeline, "cuda_timeit", lambda name: nullcontext())
         optimize_pipeline.optimize_grasps(cfg)
         optimize_pipeline.build_env.assert_called_once_with(
-            cfg.grasp_optim.evaluator, cfg.robot_config, optimize_pipeline.device, enable_rendering=False
+            cfg.grasp_optim.evaluator, cfg.robot_config, optimize_pipeline.device
         )
         saved = GraspKitData.load(str(output / "scene.h5"))
         torch.testing.assert_close(saved.grasp_qpos, qpos[0, :1])
