@@ -1,0 +1,137 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hug"
+version = "0.1.0"
+description = "HuG: humanoid whole-body grasping on a Unitree G1 with Inspire hands, in simulation and on the real robot"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "The HuG authors" }]
+maintainers = [
+    { name = "Xuanbin Peng", email = "xup006@ucsd.edu" },
+    { name = "Lai Wei", email = "laiwei.cuhksz@gmail.com" },
+]
+keywords = ["humanoid", "whole-body control", "grasping", "robotics"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: POSIX :: Linux",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# What sim and real share. The simulator is the `sim` extra; the robot stack is the `real-*` extras.
+dependencies = [
+    "huggingface_hub",   # paths.py fetches the robot, objects and policies from pinned HF datasets
+    "numpy",
+    "onnxruntime<1.24",  # 1.24+ dropped Python 3.10 wheels
+    "pin>=3.7.0",        # pinocchio: kinematics and gravity compensation
+    "robokit==1.0.0rc1", # IK, hand-eye calibration, SAM2 annotator (github.com/openrobokit/robokit)
+    "scipy>=1.15.3",
+    "trimesh",
+    "tyro",              # every script's CLI
+    "viser>=1.1",        # every script's web UI
+    "warp-lang",         # the IK's GPU kernels
+    "yourdfpy",
+]
+
+[project.urls]
+Homepage = "https://xuanbinpeng.com/hug"
+Paper = "https://arxiv.org/abs/2611.01659"
+Repository = "https://github.com/openrobokit/graspkit/tree/main/projects/hug"
+
+[project.optional-dependencies]
+# The physics the grasp policy was trained in; no torch.
+sim = ["sapien==3.0.3"]
+
+# The real robot, one extra per CUDA build: sync exactly one. Only SAM2 and nvdiffrast need torch, and 2.9.1 is the
+# newest torch both ship wheels for. Bump torch and both wheel pins together, or nvdiffrast fails at import on a C10
+# ABI mismatch. The pins spell out the +pt*cu* build, since without it any build would satisfy them.
+real-cu128 = [
+    "hug[real]",
+    "torch==2.9.1", "torchvision",
+    "nvdiffrast==0.3.3+pt2.9.1cu128",
+    "sam-2==1.0+2b90b9fpt2.9.1cu128",
+]
+real-cu126 = [
+    "hug[real]",
+    "torch==2.9.1", "torchvision",
+    "nvdiffrast==0.3.3+pt2.9.1cu126",
+    "sam-2==1.0+2b90b9fpt2.9.1cu126",
+]
+# The rest of the robot stack, without torch. Sync it through real-cu128 or real-cu126.
+real = [
+    "unitree_sdk2py",     # G1 low-level control over DDS
+    "pyserial",           # Inspire hand over RS-485
+    "pyrealsense2<2.55",  # 2.55+ dropped the L515 (enumerates 0 devices)
+    "opencv-python",
+    "open3d",             # object-cloud cleanup
+    "matplotlib",         # calibration overlays
+    "setuptools",         # nvdiffrast imports it at runtime
+    "fastapi", "uvicorn", "pyzmq", "pillow",  # robokit's SAM2 web server, which leaves them undeclared
+]
+
+dev = ["mypy>=1.0", "ruff>=0.4"]
+
+# The two CUDA extras take torch from different indexes, so at most one may be enabled.
+[tool.uv]
+conflicts = [[{ extra = "real-cu126" }, { extra = "real-cu128" }]]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url  = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url  = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+# nvdiffrast and sam-2 wheels prebuilt per torch + CUDA; neither is on PyPI.
+[[tool.uv.index]]
+name = "torch-packages-builder"
+url  = "https://jianglongye.github.io/torch_packages_builder"
+explicit = true
+
+[tool.uv.sources]
+torch       = [{ index = "pytorch-cu128", extra = "real-cu128" }, { index = "pytorch-cu126", extra = "real-cu126" }]
+torchvision = [{ index = "pytorch-cu128", extra = "real-cu128" }, { index = "pytorch-cu126", extra = "real-cu126" }]
+nvdiffrast  = { index = "torch-packages-builder" }
+sam-2       = { index = "torch-packages-builder" }
+# No releases, so a commit: the first that ships an `__init__.py` in every subpackage HuG imports.
+unitree_sdk2py = { git = "https://github.com/unitreerobotics/unitree_sdk2_python.git", rev = "65691c8a8bc53b98d3976dba4dbf9d5d20b2e7f5" }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hug"]
+
+[tool.ruff]
+line-length = 120
+lint.select = ["E", "F", "I"]  # pycodestyle + pyflakes + isort
+
+# Strict, minus the checks that only flag bare np.ndarray annotations and untyped third-party calls.
+[tool.mypy]
+strict = true
+disallow_any_generics = false
+warn_return_any = false
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+disallow_untyped_calls = false
+ignore_missing_imports = true
+
+# Surgical ports (AGENTS.md "lifted from"): lazy-init `X | None` attributes mypy cannot narrow across methods.
+[[tool.mypy.overrides]]
+module = [
+    "hug.utils",
+    "hug.grasp.planner",
+    "hug.wbc.robokit_ik",
+    "hug.wbc.pose_estimator",
+]
+disable_error_code = ["assignment", "attr-defined", "union-attr", "index", "arg-type"]
+
+# viser 1.1 declares the GUI `value` setter after another method, so mypy reads the text labels as read-only.
+[[tool.mypy.overrides]]
+module = ["hug.real.perception"]
+disable_error_code = ["misc"]
