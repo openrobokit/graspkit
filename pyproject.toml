@@ -101,6 +101,9 @@ conflicts = [
 [tool.hatch.build.targets.wheel]
 packages = ["src/graspkit"]
 
+[tool.hatch.build.targets.sdist]
+exclude = ["projects"]  # each project is its own uv project, not part of the graspkit package
+
 [tool.uv.sources]
 torch = [
     { index = "pytorch-cpu", group = "pt-cpu", marker = "sys_platform == 'linux' or sys_platform == 'win32'" },

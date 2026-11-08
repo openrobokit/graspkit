@@ -1,0 +1,22 @@
+name: hug
+on:
+  push:
+    branches: [main]
+    paths: ["projects/hug/**", ".github/workflows/hug.yaml"]
+  pull_request:
+    branches: [main]
+    paths: ["projects/hug/**", ".github/workflows/hug.yaml"]
+jobs:
+  # build.yaml's ruff already covers projects/hug; this adds HuG's mypy, in HuG's own locked env (sim, no torch).
+  mypy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/hug
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          cache-dependency-glob: projects/hug/uv.lock
+      - run: uv run --frozen --extra sim --extra dev mypy src/hug

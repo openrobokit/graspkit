@@ -83,6 +83,7 @@ scripts/
   deploy/             # Real-robot deployment (xARM, G1)
   tools/              # Asset/visualization tools
 tests/                # Pytest suite mirroring src/graspkit/ and scripts/ (tests/scripts/); shared fixtures in conftest.py
+projects/hug/         # HuG (CoRL 2026): its own uv project and AGENTS.md; run uv and make from that folder
 assets/               # graspkit HF-dataset checkout via graspkit.assets.link(); not git-tracked
 ```
 

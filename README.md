@@ -20,6 +20,11 @@ in simulation or on real robots; it is built on top of [RoboKit](https://github.
   <em>Real-world grasping with dexterous robot hands in San Diego.</em>
 </p>
 
+## Research Projects
+
+- **HuG** (CoRL 2026): humanoid whole-body grasping.
+  [Code](https://github.com/openrobokit/graspkit/tree/main/projects/hug) · [Project page](https://xuanbinpeng.com/hug) · [arXiv](https://arxiv.org/abs/2611.01659)
+
 ## Quick links
 
 - [Homepage](https://openrobokit.com/graspkit/)
